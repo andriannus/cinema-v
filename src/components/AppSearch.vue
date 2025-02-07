@@ -24,6 +24,7 @@
 
   background-color: rgba(0, 0, 0, 0.13);
   border-radius: 4px;
+  margin: 0 42px;
   padding: 8px 12px;
   width: 571px;
 }

@@ -53,14 +53,15 @@
 
 <style scoped>
 .Navbar {
-  @apply flex h-full items-center justify-center;
+  @apply flex h-full items-center justify-center sticky;
 
   background-color: rgba(255, 255, 255, 0.05);
   height: 66px;
+  top: 0;
 }
 
 .Navbar-layout {
-  @apply flex;
+  @apply flex justify-between w-full;
 
   max-width: 1280px;
 }
