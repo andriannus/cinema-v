@@ -1,3 +1,11 @@
+<script setup lang="ts">
+useHead({
+  titleTemplate: '%s - CinemaV',
+});
+</script>
+
 <template>
-  <NuxtPage />
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>

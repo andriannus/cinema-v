@@ -1,7 +1,9 @@
+<script setup lang="ts">
+useHead({
+  title: 'Home',
+});
+</script>
+
 <template>
-  <div>
-    <h1 class="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-  </div>
+  <AppHeader />
 </template>
