@@ -1,6 +1,7 @@
 <template>
   <div class="Layout">
     <slot />
+    <AppFooter />
   </div>
 </template>
 
