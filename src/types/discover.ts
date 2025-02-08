@@ -1,23 +1,4 @@
-export type DiscoverResult = {
-  adult: boolean;
-  backdrop_path: string;
-  genre_ids: number[];
-  id: number;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  release_date: string;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-};
+import type { MovieGeneral } from "./movie";
+import type { PaginationWithResults } from "./pagination";
 
-export type DiscoverResponse = {
-  page: number;
-  results: DiscoverResult[];
-  total_pages: number;
-  total_results: number;
-};
+export type DiscoverResponse = PaginationWithResults<MovieGeneral>;

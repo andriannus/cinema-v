@@ -1,13 +1,22 @@
 <script setup lang="ts">
-import { nextTick } from 'vue';
-import type { DiscoverResponse, DiscoverResult } from '~/types/discover';
+import { nextTick, onMounted, watch } from "vue";
 
-useHead({ title: 'Home' });
+import { useHead, useState } from "#app";
+import { useGenreStore, useMyFetch } from "#imports";
 
-const movies = useState<DiscoverResult[]>('movies', () => []);
-const page = useState<number>('page', () => 1);
+import type { DiscoverResponse } from "~/types/discover";
+import type { MovieGeneral } from "~/types/movie";
 
-const fetchDiscover = await useMyFetch<DiscoverResponse>('/discover/movie', {
+useHead({ title: "Home" });
+
+const genreStore = useGenreStore();
+
+const movies = useState<MovieGeneral[]>("movies", () => []);
+const page = useState<number>("page", () => 1);
+
+genreStore.fetchMovieGenres();
+
+const fetchDiscover = await useMyFetch<DiscoverResponse>("/discover/movie", {
   query: { page },
   lazy: true,
   server: false,
@@ -33,14 +42,11 @@ onMounted(() => {
   <main class="Main">
     <div class="Main-layout">
       <div class="grid grid-cols-4 gap-4">
-        <div
+        <AppMovie
           v-for="movie in movies"
           :key="movie.id"
-        >
-          <p class="text-white">
-            {{ movie.title }}
-          </p>
-        </div>
+          :movie="movie"
+        />
       </div>
 
       <button @click="page++">
