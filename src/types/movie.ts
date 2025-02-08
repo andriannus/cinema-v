@@ -1,7 +1,9 @@
+import type { GenreMovie } from "./genre";
+import type { ProductionCompany, ProductionCountry } from "./production";
+
 export type MovieGeneral = {
   adult: boolean;
   backdrop_path: string;
-  genre_ids: number[];
   id: number;
   original_language: string;
   original_title: string;
@@ -13,4 +15,37 @@ export type MovieGeneral = {
   video: boolean;
   vote_average: number;
   vote_count: number;
+};
+
+export type MovieForList = MovieGeneral & {
+  genre_ids: number[];
+};
+
+export type MovieSpokenLanguage = {
+  english_name: string;
+  iso_639_1: string;
+  name: string;
+};
+
+export type MovieBelongsToCollection = {
+  id: number;
+  name: string;
+  poster_path: string;
+  backdrop_path: string;
+};
+
+export type MovieDetail = MovieGeneral & {
+  belongs_to_collection: MovieBelongsToCollection;
+  budget: number;
+  genres: GenreMovie[];
+  homepage: string;
+  imdb_id: string;
+  origin_country: string[];
+  production_companies: ProductionCompany[];
+  production_countries: ProductionCountry[];
+  revenue: number;
+  runtime: number;
+  spoken_languages: MovieSpokenLanguage[];
+  status: string;
+  tagline: string;
 };

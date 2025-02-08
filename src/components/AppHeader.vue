@@ -1,5 +1,16 @@
+<script setup lang="ts">
+type AppHeaderProps = {
+  transparent?: boolean;
+};
+
+const { transparent } = defineProps<AppHeaderProps>();
+</script>
+
 <template>
-  <nav class="Navbar">
+  <nav
+    class="Navbar"
+    :class="{ 'Navbar--transparent': transparent }"
+  >
     <div class="Navbar-layout">
       <NuxtLink
         class="Navbar-brand"
@@ -58,6 +69,10 @@
   background-color: rgba(255, 255, 255, 0.05);
   height: 66px;
   top: 0;
+}
+
+.Navbar--transparent {
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .Navbar-layout {

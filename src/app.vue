@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useHead } from "#app";
+import { useHead } from "#imports";
 
 useHead({
   titleTemplate: "%s - CinemaV",
