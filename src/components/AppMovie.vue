@@ -1,15 +1,14 @@
 <script setup lang="ts">
-import { toFixedIfNecessary, useGenreStore } from "#imports";
+import { navigateTo, toFixedIfNecessary, useGenreStore } from "#imports";
 
 import { TMDB_IMAGE_BASE_URL } from "~/constants/movie";
-import type { MovieGeneral } from "~/types/movie";
+import type { MovieForList } from "~/types/movie";
 
 type AppMovieProps = {
-  movie: MovieGeneral;
+  movie: MovieForList;
 };
 
 const { movie } = defineProps<AppMovieProps>();
-
 const { getMovieGenre } = useGenreStore();
 </script>
 
@@ -27,7 +26,7 @@ const { getMovieGenre } = useGenreStore();
       </span>
 
       <div
-        class="Movie-hover absolute invisible top-0 left-0 group-hover/movie:visible"
+        class="Movie-hover absolute invisible top-0 left-0 group-hover/movie:visible transition-all ease-in duration-300 opacity-0 hover:opacity-100"
       >
         <div class="flex font-semibold items-center text-2xl">
           <nuxt-icon
@@ -41,6 +40,16 @@ const { getMovieGenre } = useGenreStore();
         <span class="text-lg font-semibold">
           {{ getMovieGenre(movie.genre_ids[0]) }}
         </span>
+
+        <div class="grid gap-4">
+          <AppButton @click="navigateTo(`/movie/${movie.id}`)">
+            <span class="font-bold uppercase">View</span>
+          </AppButton>
+
+          <AppButton outline>
+            <span class="font-bold uppercase">Add</span>
+          </AppButton>
+        </div>
       </div>
     </div>
 

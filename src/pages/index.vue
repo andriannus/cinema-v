@@ -5,13 +5,13 @@ import { useHead, useState } from "#app";
 import { useGenreStore, useMyFetch } from "#imports";
 
 import type { DiscoverResponse } from "~/types/discover";
-import type { MovieGeneral } from "~/types/movie";
+import type { MovieForList } from "~/types/movie";
 
 useHead({ title: "Home" });
 
 const genreStore = useGenreStore();
 
-const movies = useState<MovieGeneral[]>("movies", () => []);
+const movies = useState<MovieForList[]>("movies", () => []);
 const page = useState<number>("page", () => 1);
 
 genreStore.fetchMovieGenres();
@@ -49,9 +49,11 @@ onMounted(() => {
         />
       </div>
 
-      <button @click="page++">
-        Load More
-      </button>
+      <div class="flex justify-center pt-16 pb-16">
+        <AppButton @click="page++">
+          Load More
+        </AppButton>
+      </div>
     </div>
   </main>
 </template>
@@ -63,7 +65,7 @@ onMounted(() => {
 }
 
 .Main-layout {
-  @apply flex;
+  @apply flex flex-col;
 
   max-width: 1280px;
   padding: 0 16px;
