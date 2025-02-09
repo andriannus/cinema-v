@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { nextTick, onMounted, watch } from "vue";
+import { watch } from "vue";
 
-import { useHead, useState } from "#app";
-import { useGenreStore, useMyFetch } from "#imports";
+import { useState } from "#app";
+import { useGenreStore, useHead, useMyFetch } from "#imports";
 
 import type { DiscoverResponse } from "~/types/discover";
 import type { MovieForList } from "~/types/movie";
@@ -29,10 +29,6 @@ watch(fetchDiscover.data, (newData, oldData) => {
   if (newData.page > (oldData?.page || 0)) {
     movies.value.push(...newData.results);
   }
-});
-
-onMounted(() => {
-  nextTick(fetchDiscover.execute);
 });
 </script>
 
@@ -62,6 +58,7 @@ onMounted(() => {
 .Main {
   @apply flex justify-center;
   min-height: calc(100vh - 66px - 160px);
+  padding-top: 66px;
 }
 
 .Main-layout {
