@@ -64,11 +64,12 @@ const { transparent } = defineProps<AppHeaderProps>();
 
 <style scoped>
 .Navbar {
-  @apply flex h-full items-center justify-center sticky;
+  @apply flex w-full h-full items-center justify-center fixed;
 
   background-color: rgba(255, 255, 255, 0.05);
   height: 66px;
   top: 0;
+  z-index: 10;
 }
 
 .Navbar--transparent {
