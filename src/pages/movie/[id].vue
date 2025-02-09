@@ -24,15 +24,22 @@ useSeoMeta({
 <template>
   <AppHeader transparent />
 
-  <div
-    class="Backdrop"
-    :style="{
-      backgroundImage: `url(${TMDB_IMAGE_BASE_URL}/original/${movie.backdrop_path})`,
-    }"
-  />
+  <div class="Detail">
+    <div
+      class="Backdrop"
+      :style="{
+        backgroundImage: `url(${TMDB_IMAGE_BASE_URL}/original/${movie.backdrop_path})`,
+      }"
+    />
+
+    <template v-if="movie.id">
+      <LazyMovieReviews :movie-id="movie.id" />
+      <LazyMovieRecommendations :movie-id="movie.id" />
+    </template>
+  </div>
 </template>
 
-<style>
+<style scoped>
 .Backdrop {
   opacity: 0.2;
   background-size: cover;

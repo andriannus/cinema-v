@@ -65,6 +65,7 @@ const { getMovieGenre } = useGenreStore();
 .Movie {
   color: #ffffff;
   width: 100%;
+  max-width: 300px;
 }
 
 .Movie-title {

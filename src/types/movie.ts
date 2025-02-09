@@ -1,4 +1,5 @@
 import type { GenreMovie } from "./genre";
+import type { PaginationWithResults } from "./pagination";
 import type { ProductionCompany, ProductionCountry } from "./production";
 
 export type MovieGeneral = {
@@ -49,3 +50,22 @@ export type MovieDetail = MovieGeneral & {
   status: string;
   tagline: string;
 };
+
+export type MovieRecommendationResponse = PaginationWithResults<MovieForList>;
+
+export type MovieReview = {
+  author: string;
+  author_details: {
+    name: string;
+    username: string;
+    avatar_path: string;
+    rating: number | null;
+  };
+  content: string;
+  created_at: string;
+  id: string;
+  updated_at: string;
+  url: string;
+};
+
+export type MovieReviewResponse = PaginationWithResults<MovieReview>;
