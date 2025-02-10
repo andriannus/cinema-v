@@ -1,15 +1,42 @@
 <script setup lang="ts">
+import { onMounted, onUnmounted } from "vue";
+
+import { useState } from "#app";
+
 type AppHeaderProps = {
   transparent?: boolean;
 };
 
 const { transparent } = defineProps<AppHeaderProps>();
+
+const scrolled = useState<boolean>("scrolled", () => false);
+
+const changeNavbarBackground = () => {
+  const scrollY = window.scrollY;
+
+  if (scrollY > 0) {
+    scrolled.value = true;
+  } else {
+    scrolled.value = false;
+  }
+};
+
+onMounted(() => {
+  window.addEventListener("scroll", changeNavbarBackground);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", changeNavbarBackground);
+});
 </script>
 
 <template>
   <nav
     class="Navbar"
-    :class="{ 'Navbar--transparent': transparent }"
+    :class="{
+      'Navbar--transparent': transparent,
+      'Navbar--active ease-in': scrolled,
+    }"
   >
     <div class="Navbar-layout">
       <NuxtLink
@@ -74,6 +101,12 @@ const { transparent } = defineProps<AppHeaderProps>();
 
 .Navbar--transparent {
   background-color: rgba(255, 255, 255, 0.05);
+}
+
+.Navbar--active {
+  @apply transition-all duration-300;
+
+  background-color: #000000;
 }
 
 .Navbar-layout {
