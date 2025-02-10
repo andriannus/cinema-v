@@ -141,6 +141,7 @@ const transformContent = (index: number, content: string) => {
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  height: fit-content;
   padding: 24px;
 }
 
