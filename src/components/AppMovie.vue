@@ -16,6 +16,7 @@ const { getMovieGenre } = useGenreStore();
   <div class="Movie">
     <div class="Movie-poster group/movie">
       <img
+        v-if="!!movie.poster_path"
         :src="`${TMDB_IMAGE_BASE_URL}/w300/${movie.poster_path}`"
         :alt="movie.title"
         loading="lazy"
@@ -65,7 +66,7 @@ const { getMovieGenre } = useGenreStore();
 .Movie {
   color: #ffffff;
   width: 100%;
-  max-width: 300px;
+  max-width: 220px;
 }
 
 .Movie-title {
@@ -77,6 +78,7 @@ const { getMovieGenre } = useGenreStore();
   margin-bottom: 4px;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .Movie-subtitle {
@@ -96,7 +98,10 @@ const { getMovieGenre } = useGenreStore();
 .Movie-poster {
   @apply relative;
 
+  background-color: #ffffff;
   margin-bottom: 12px;
+  min-width: 220px;
+  min-height: 330px;
 }
 
 .Movie-hover {
