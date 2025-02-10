@@ -1,54 +1,38 @@
 <script setup lang="ts">
-import { watch } from "vue";
-
-import { useState } from "#app";
-import { useGenreStore, useHead, useMyFetch } from "#imports";
-
-import type { DiscoverResponse } from "~/types/discover";
-import type { MovieForList } from "~/types/movie";
+import { useDiscoverStore, useGenreStore, useHead } from "#imports";
 
 useHead({ title: "Home" });
 
 const genreStore = useGenreStore();
-
-const movies = useState<MovieForList[]>("movies", () => []);
-const page = useState<number>("page", () => 1);
+const discoverStore = useDiscoverStore();
 
 genreStore.fetchMovieGenres();
-
-const fetchDiscover = await useMyFetch<DiscoverResponse>("/discover/movie", {
-  query: { page },
-  lazy: true,
-  server: false,
-  watch: [page],
-});
-
-watch(fetchDiscover.data, (newData, oldData) => {
-  if (!newData) return;
-
-  if (newData.page > (oldData?.page || 0)) {
-    movies.value.push(...newData.results);
-  }
-});
+discoverStore.initialize();
 </script>
 
 <template>
   <AppHeader />
 
   <main class="Main">
-    <div class="Main-layout">
-      <div class="grid grid-cols-4 gap-4">
-        <AppMovie
-          v-for="movie in movies"
-          :key="movie.id"
-          :movie="movie"
-        />
+    <div class="Main-layout grid grid-cols-4 gap-8">
+      <div>
+        <AppFilter />
       </div>
 
-      <div class="flex justify-center pt-16 pb-16">
-        <AppButton @click="page++">
-          Load More
-        </AppButton>
+      <div class="col-span-3">
+        <div class="grid grid-cols-4 gap-4">
+          <AppMovie
+            v-for="movie in discoverStore.movies"
+            :key="movie.id"
+            :movie="movie"
+          />
+        </div>
+
+        <div class="flex justify-center pt-16 pb-16">
+          <AppButton @click="discoverStore.loadMore">
+            Load More
+          </AppButton>
+        </div>
       </div>
     </div>
   </main>
@@ -62,8 +46,6 @@ watch(fetchDiscover.data, (newData, oldData) => {
 }
 
 .Main-layout {
-  @apply flex flex-col;
-
   max-width: 1280px;
   padding: 0 16px;
   width: 100%;
