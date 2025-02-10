@@ -2,7 +2,7 @@
 import { useHead } from "#imports";
 
 useHead({
-  titleTemplate: "%s - CinemaV",
+  titleTemplate: "%s - MoovieTime",
 });
 </script>
 

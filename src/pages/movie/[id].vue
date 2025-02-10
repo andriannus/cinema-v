@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { computed, useMyFetch, useRoute, useSeoMeta, useState } from "#imports";
+import { computed, useMyFetch, useRequestURL, useRoute, useSeoMeta, useState } from "#imports";
 
 import { TMDB_IMAGE_BASE_URL } from "~/constants/movie";
 import type { MovieDetail } from "~/types/movie";
 
+const url = useRequestURL();
 const route = useRoute();
+
 const movie = useState<Partial<MovieDetail>>("movie", () => ({}));
 
 const fetchMovie = await useMyFetch<MovieDetail>(`/movie/${route.params.id}`);
@@ -16,8 +18,13 @@ if (fetchMovie.status.value === "success" && fetchMovie.data.value) {
 useSeoMeta({
   title: movie.value.title,
   ogTitle: movie.value.title,
+  twitterTitle: movie.value.title,
   description: movie.value.overview,
   ogDescription: movie.value.overview,
+  twitterDescription: movie.value.overview,
+  ogImage: `${TMDB_IMAGE_BASE_URL}/w300${movie.value.poster_path}`,
+  twitterImage: `${TMDB_IMAGE_BASE_URL}/w300${movie.value.poster_path}`,
+  ogUrl: url.href,
 });
 
 const genres = computed(() => {
@@ -31,7 +38,7 @@ const genres = computed(() => {
   <div
     class="Backdrop"
     :style="{
-      backgroundImage: `url(${TMDB_IMAGE_BASE_URL}/original/${movie.backdrop_path})`,
+      backgroundImage: `url(${TMDB_IMAGE_BASE_URL}/original${movie.backdrop_path})`,
     }"
   />
 
@@ -40,7 +47,7 @@ const genres = computed(() => {
       <div class="Detail-poster mr-8">
         <img
           v-if="!!movie.poster_path"
-          :src="`${TMDB_IMAGE_BASE_URL}/w300/${movie.poster_path}`"
+          :src="`${TMDB_IMAGE_BASE_URL}/w300${movie.poster_path}`"
           :alt="movie.title"
           loading="lazy"
         >

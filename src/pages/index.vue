@@ -1,13 +1,23 @@
 <script setup lang="ts">
-import { useDiscoverStore, useGenreStore, useHead } from "#imports";
+import { useDiscoverStore, useGenreStore, useRequestURL, useSeoMeta } from "#imports";
 
-useHead({ title: "Home" });
+const url = useRequestURL();
 
 const genreStore = useGenreStore();
 const discoverStore = useDiscoverStore();
 
 genreStore.fetchMovieGenres();
 discoverStore.initialize();
+
+useSeoMeta({
+  title: "Home",
+  ogTitle: "Home",
+  twitterTitle: "Home",
+  description: "Find your favorite movies!",
+  ogDescription: "Find your favorite movies!",
+  twitterDescription: "Find your favorite movies!",
+  ogUrl: url.href,
+});
 </script>
 
 <template>
