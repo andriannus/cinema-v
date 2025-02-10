@@ -81,7 +81,7 @@ const transformContent = (index: number, content: string) => {
             >
               <img
                 v-if="!!review.author_details.avatar_path"
-                :src="`${TMDB_IMAGE_BASE_URL}/original/${review.author_details.avatar_path}`"
+                :src="`${TMDB_IMAGE_BASE_URL}/original${review.author_details.avatar_path}`"
                 :alt="review.author_details.name"
               >
             </div>

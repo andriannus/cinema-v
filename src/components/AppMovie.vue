@@ -17,7 +17,7 @@ const { getMovieGenre } = useGenreStore();
     <div class="Movie-poster group/movie">
       <img
         v-if="!!movie.poster_path"
-        :src="`${TMDB_IMAGE_BASE_URL}/w300/${movie.poster_path}`"
+        :src="`${TMDB_IMAGE_BASE_URL}/w300${movie.poster_path}`"
         :alt="movie.title"
         loading="lazy"
       >
