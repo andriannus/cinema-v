@@ -3,9 +3,11 @@ import {
   computed,
   transformToReviewDate,
   useMyFetch,
+  useState,
+  watch,
 } from "#imports";
-import { TMDB_IMAGE_BASE_URL } from "~/constants/movie";
 
+import { TMDB_IMAGE_BASE_URL } from "~/constants/movie";
 import type { MovieReviewResponse } from "~/types/movie";
 
 type MovieReviewsProps = {
@@ -35,6 +37,24 @@ const reviews = computed(() => {
 
   return tempReviews.sort(() => 0.5 - Math.random()).slice(-2);
 });
+
+const shouldFullContents = useState<boolean[]>("shouldFullContents", () => []);
+
+watch(reviews.value, () => {
+  shouldFullContents.value = new Array(reviews.value.length).fill(true);
+});
+
+const readMoreContent = (index: number) => {
+  shouldFullContents.value[index] = !shouldFullContents.value[index];
+};
+
+const transformContent = (index: number, content: string) => {
+  if (shouldFullContents.value[index]) {
+    return content;
+  }
+
+  return `${content.substring(0, 300)}...`;
+};
 </script>
 
 <template>
@@ -51,12 +71,14 @@ const reviews = computed(() => {
 
       <div class="grid grid-cols-2 gap-4">
         <div
-          v-for="review in reviews"
+          v-for="(review, index) in reviews"
           :key="review.id"
           class="Review-card"
         >
           <div class="flex mb-6">
-            <div class="w-12 h-12 bg-gray-300 mr-4 overflow-hidden rounded-full">
+            <div
+              class="w-12 h-12 bg-gray-300 mr-4 overflow-hidden rounded-full"
+            >
               <img
                 v-if="!!review.author_details.avatar_path"
                 :src="`${TMDB_IMAGE_BASE_URL}/original/${review.author_details.avatar_path}`"
@@ -84,7 +106,16 @@ const reviews = computed(() => {
             </div>
           </div>
 
-          <p>{{ review.content }}</p>
+          <p>
+            {{ transformContent(reviews.indexOf(review), review.content) }}
+
+            <button
+              class="text-red-500 italic underline cursor-pointer"
+              @click="readMoreContent(index)"
+            >
+              {{ shouldFullContents[index] ? "read the less." : "read the more." }}
+            </button>
+          </p>
         </div>
       </div>
     </div>
