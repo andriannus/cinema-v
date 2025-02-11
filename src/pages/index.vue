@@ -29,33 +29,35 @@ useSeoMeta({
   <AppHeader />
 
   <main class="Main flex justify-center">
-    <div class="Main-layout grid grid-cols-4 gap-8">
-      <div class="Heading col-span-4 flex items-center justify-between">
+    <div class="Main-layout grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="Heading col-span-4 flex items-center justify-between pt-4 md:pt-24 pb-4 md:pb-12">
         <h1 class="font-semibold text-2xl">
           Discover Movies
         </h1>
 
-        <div>
+        <div class="flex items-center">
           <span class="mr-3">My Movies</span>
 
           <div class="Chip">
-            <span class="font-semibold">2</span>
+            <span class="font-semibold mr-1">2</span>
             <span>movies</span>
           </div>
         </div>
       </div>
 
-      <div>
+      <div class="hidden md:block">
         <AppFilter />
       </div>
 
-      <div class="col-span-3">
-        <div class="grid grid-cols-4 gap-4">
-          <AppMovie
+      <div class="col-span-4 md:col-span-3">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div
             v-for="movie in discoverStore.movies"
             :key="movie.id"
-            :movie="movie"
-          />
+            class="flex justify-center"
+          >
+            <AppMovie :movie="movie" />
+          </div>
         </div>
 
         <div class="flex justify-center pt-16 pb-16">
@@ -82,8 +84,6 @@ useSeoMeta({
 
 .Heading {
   color: #e5e5e5;
-  padding-top: 104px;
-  padding-bottom: 52px;
 }
 
 .Chip {

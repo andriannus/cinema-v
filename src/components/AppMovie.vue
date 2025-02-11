@@ -21,6 +21,7 @@ const genreStore = useGenreStore();
         :src="`${TMDB_IMAGE_BASE_URL}/w300${movie.poster_path}`"
         :alt="movie.title"
         loading="lazy"
+        class="w-full"
       >
 
       <span class="Movie-rating absolute font-bold top-0 right-0">

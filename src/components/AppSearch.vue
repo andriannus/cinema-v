@@ -1,5 +1,5 @@
 <template>
-  <div class="Search flex items-center rounded-sm">
+  <div class="Search hidden lg:flex items-center rounded-sm">
     <nuxt-icon
       name="movie"
       class="flex h-5 text-white w-5"
@@ -16,6 +16,13 @@
       class="flex h-5 text-white w-5"
     />
   </div>
+
+  <button class="p-1 mr-3 lg:hidden">
+    <nuxt-icon
+      name="search"
+      class="flex h-5 text-white w-5"
+    />
+  </button>
 </template>
 
 <style scoped>

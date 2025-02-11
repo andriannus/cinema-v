@@ -69,7 +69,7 @@ const transformContent = (index: number, content: string) => {
         REVIEWS
       </span>
 
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div
           v-for="(review, index) in reviews"
           :key="review.id"

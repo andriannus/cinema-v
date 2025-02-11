@@ -41,12 +41,12 @@ const movies = computed(() => {
     v-else
     class="flex justify-center"
   >
-    <div class="flex flex-col mt-13 mb-13">
+    <div class="Recommendation-layout flex flex-col mt-13 mb-13 w-full">
       <span class="block font-semibold mb-9 text-sm text-white uppercase">
         Recommendation Movies
       </span>
 
-      <div class="grid grid-cols-5 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4">
         <LazyAppMovie
           v-for="movie in movies"
           :key="movie.id"
@@ -61,6 +61,5 @@ const movies = computed(() => {
 .Recommendation-layout {
   max-width: 1280px;
   padding: 0 16px;
-  width: 100%;
 }
 </style>

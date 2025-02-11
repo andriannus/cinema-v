@@ -63,7 +63,7 @@ onUnmounted(() => {
 
       <AppSearch />
 
-      <ul class="flex">
+      <ul class="hidden lg:flex">
         <li class="Nav-link flex cursor-pointer items-center uppercase">
           <nuxt-icon
             name="grid"

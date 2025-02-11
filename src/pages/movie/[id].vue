@@ -50,17 +50,18 @@ const genres = computed(() => {
   />
 
   <div class="flex justify-center p-6">
-    <div class="Detail-layout flex text-white">
-      <div class="Detail-poster mr-8">
+    <div class="Detail-layout flex flex-col md:flex-row text-white">
+      <div class="Detail-poster md:mr-8">
         <img
           v-if="!!movie.poster_path"
           :src="`${TMDB_IMAGE_BASE_URL}/w300${movie.poster_path}`"
           :alt="movie.title"
           loading="lazy"
+          class="w-full"
         >
       </div>
 
-      <div class="flex flex-col justify-evenly w-0 grow">
+      <div class="flex flex-col justify-evenly grow w-full">
         <div class="pt-4 pb-8">
           <span
             v-if="movie.release_date"
@@ -103,7 +104,6 @@ const genres = computed(() => {
 }
 
 .Detail-poster {
-  height: 450px;
   background-color: #ffffff;
 }
 
