@@ -32,15 +32,15 @@ onUnmounted(() => {
 
 <template>
   <nav
-    class="Navbar"
+    class="Navbar fixed flex h-full items-center justify-center w-full"
     :class="{
       'Navbar--transparent': transparent,
       'Navbar--active ease-in': scrolled,
     }"
   >
-    <div class="Navbar-layout">
+    <div class="Navbar-layout flex justify-between w-full">
       <NuxtLink
-        class="Navbar-brand"
+        class="Navbar-brand cursor-pointer inline-flex"
         to="/"
       >
         <picture>
@@ -63,25 +63,25 @@ onUnmounted(() => {
 
       <AppSearch />
 
-      <ul class="Navbar-nav">
-        <li class="Nav-link">
+      <ul class="flex">
+        <li class="Nav-link flex cursor-pointer items-center uppercase">
           <nuxt-icon
             name="grid"
-            class="Nav-icon"
+            class="flex h-5 mr-2.5 w-5"
           />
 
           <span>Categories</span>
         </li>
 
-        <li class="Nav-link">
+        <li class="Nav-link flex cursor-pointer items-center uppercase">
           Movies
         </li>
 
-        <li class="Nav-link">
+        <li class="Nav-link flex cursor-pointer items-center uppercase">
           TV Shows
         </li>
 
-        <li class="Nav-link">
+        <li class="Nav-link flex cursor-pointer items-center uppercase">
           Login
         </li>
       </ul>
@@ -91,8 +91,6 @@ onUnmounted(() => {
 
 <style scoped>
 .Navbar {
-  @apply flex w-full h-full items-center justify-center fixed;
-
   background-color: rgba(255, 255, 255, 0.05);
   height: 66px;
   top: 0;
@@ -100,46 +98,27 @@ onUnmounted(() => {
 }
 
 .Navbar--transparent {
+  @apply duration-300 transition-all;
   background-color: rgba(255, 255, 255, 0.05);
 }
 
 .Navbar--active {
-  @apply transition-all duration-300;
-
   background-color: #000000;
 }
 
 .Navbar-layout {
-  @apply flex justify-between w-full;
-
   max-width: 1280px;
 }
 
-.Navbar-nav {
-  @apply flex;
-}
-
 .Navbar-brand {
-  @apply cursor-pointer inline-flex;
-
   max-width: calc(112px + 32px);
   padding: 8px 16px;
 }
 
 .Nav-link {
-  @apply flex cursor-pointer items-center uppercase;
-
   color: #e5e5e5;
   font-weight: 500;
   padding: 8px 16px;
-}
-
-.Nav-icon {
-  @apply flex h-full w-full;
-
-  height: 20px;
-  margin-right: 10px;
-  width: 20px;
 }
 
 .Nav-icon :deep(svg) {

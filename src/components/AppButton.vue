@@ -8,7 +8,7 @@ const { outline } = defineProps<AppButtonProps>();
 
 <template>
   <button
-    class="Button border-red-500 bg-red-500 hover:bg-red-700 text-white"
+    class="Button cursor-pointer border-red-500 bg-red-500 hover:bg-red-700 rounded-full text-white"
     :class="{
       'Button--outline': outline,
     }"
@@ -19,14 +19,11 @@ const { outline } = defineProps<AppButtonProps>();
 
 <style scoped>
 .Button {
-  @apply cursor-pointer rounded-full;
-
   padding: 8px 36px;
 }
 
 .Button--outline {
-  @apply bg-transparent;
-
+  background-color: transparent;
   border: 1px solid #ffffff;
 }
 

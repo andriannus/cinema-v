@@ -1,10 +1,10 @@
 <template>
-  <footer class="Footer">
-    <div class="Footer-layout">
+  <footer class="Footer flex justify-center">
+    <div class="Footer-layout items-center flex flex-row justify-center">
       <span>&copy; MoovieTime. All rights reserved</span>
 
-      <div class="Footer-logo">
-        <picture class="Footer-logoImg">
+      <div class="flex justify-center">
+        <picture class="Footer-logo block">
           <source
             srcset="~/assets/images/logo-gray.png"
             type="image/png"
@@ -29,16 +29,12 @@
 
 <style scoped>
 .Footer {
-  @apply flex justify-center;
-
   background-color: rgba(0, 0, 0, 0.29);
   color: #929292;
   padding: 64px 0;
 }
 
 .Footer-layout {
-  @apply items-center flex flex-row justify-center;
-
   height: 32px;
   max-width: 1280px;
   padding: 0 16px;
@@ -46,20 +42,14 @@
 }
 
 .Footer-layout * {
-  @apply w-full;
+  width: 100%;
 }
 
 .Footer-layout :last-child {
-  @apply text-right;
+  text-align: right;
 }
 
 .Footer-logo {
-  @apply flex justify-center;
-}
-
-.Footer-logoImg {
-  @apply block;
-
   width: 88px;
 }
 </style>

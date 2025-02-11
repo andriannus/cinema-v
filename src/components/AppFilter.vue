@@ -15,7 +15,7 @@ const genreOptions = computed(() => {
 </script>
 
 <template>
-  <div class="Filter">
+  <div class="Filter block">
     <div>
       <div class="Filter-title Filter-titleSort pb-4 pt-0.5">
         Sort Result By
@@ -46,8 +46,6 @@ const genreOptions = computed(() => {
 
 <style scoped>
 .Filter {
-  @apply block;
-
   background: linear-gradient(180deg, #0e1723 0%, rgba(30, 35, 42, 0) 100%);
   border-radius: 8px;
   color: #ffffff;
@@ -59,13 +57,13 @@ const genreOptions = computed(() => {
 }
 
 .Filter-titleSort {
-  padding: 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 20px;
 }
 
 .Filter-titleGenre {
-  padding: 12px 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 12px 20px;
 }
 </style>

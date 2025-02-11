@@ -39,9 +39,9 @@ const movies = computed(() => {
 
   <div
     v-else
-    class="Recommendation"
+    class="flex justify-center"
   >
-    <div class="Recommendation-layout mt-13 mb-13">
+    <div class="flex flex-col mt-13 mb-13">
       <span class="block font-semibold mb-9 text-sm text-white uppercase">
         Recommendation Movies
       </span>
@@ -58,13 +58,7 @@ const movies = computed(() => {
 </template>
 
 <style scoped>
-.Recommendation {
-  @apply flex justify-center;
-}
-
 .Recommendation-layout {
-  @apply flex flex-col;
-
   max-width: 1280px;
   padding: 0 16px;
   width: 100%;

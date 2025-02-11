@@ -9,12 +9,13 @@ type AppMovieProps = {
 };
 
 const { movie } = defineProps<AppMovieProps>();
-const { getMovieGenre } = useGenreStore();
+
+const genreStore = useGenreStore();
 </script>
 
 <template>
   <div class="Movie">
-    <div class="Movie-poster group/movie">
+    <div class="Movie-poster relative group/movie">
       <img
         v-if="!!movie.poster_path"
         :src="`${TMDB_IMAGE_BASE_URL}/w300${movie.poster_path}`"
@@ -22,16 +23,16 @@ const { getMovieGenre } = useGenreStore();
         loading="lazy"
       >
 
-      <span class="Movie-rating font-bold top-0 right-0">
+      <span class="Movie-rating absolute font-bold top-0 right-0">
         {{ toFixedIfNecessary(movie.vote_average) }}
       </span>
 
       <div
-        class="Movie-hover absolute invisible top-0 left-0 group-hover/movie:visible transition-all ease-in duration-300 opacity-0 hover:opacity-100"
+        class="Movie-hover invisible top-0 left-0 group-hover/movie:visible ease-in opacity-0 hover:opacity-100"
       >
         <div class="flex font-semibold items-center text-2xl">
           <nuxt-icon
-            class="Movie-icon"
+            class="flex h-8 w-8"
             name="star"
           />
 
@@ -39,7 +40,7 @@ const { getMovieGenre } = useGenreStore();
         </div>
 
         <span class="text-lg font-semibold">
-          {{ getMovieGenre(movie.genre_ids[0]) }}
+          {{ genreStore.getMovieGenre(movie.genre_ids[0]) }}
         </span>
 
         <div class="grid gap-4">
@@ -88,16 +89,12 @@ const { getMovieGenre } = useGenreStore();
 }
 
 .Movie-rating {
-  @apply absolute;
-
   background-color: rgba(30, 35, 43, 0.8);
   color: #e5e5e5;
   padding: 6px 12px;
 }
 
 .Movie-poster {
-  @apply relative;
-
   background-color: #ffffff;
   margin-bottom: 12px;
   min-width: 220px;
@@ -105,24 +102,17 @@ const { getMovieGenre } = useGenreStore();
 }
 
 .Movie-hover {
-  @apply flex flex-col items-center justify-evenly;
+  @apply absolute duration-300 flex flex-col items-center justify-evenly transition-all;
 
   background-color: rgba(0, 0, 0, 0.8);
   width: 100%;
   height: 100%;
 }
 
-.Movie-icon {
-  @apply flex h-full w-full;
-
-  height: 32px;
-  width: 32px;
-}
-
-.Movie-icon :deep(svg) {
-  @apply h-full w-full;
-
+.nuxt-icon :deep(svg) {
   color: #ffb802;
+  height: 100%;
   margin-bottom: 0;
+  width: 100%;
 }
 </style>

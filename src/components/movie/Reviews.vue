@@ -62,10 +62,10 @@ const transformContent = (index: number, content: string) => {
 
   <div
     v-else
-    class="Review"
+    class="bg-white flex justify-center"
   >
-    <div class="Review-layout">
-      <span class="block font-semibold mb-6 text-sm text-red-500 uppercase">
+    <div class="Review-layout flex flex-col">
+      <span class="block font-semibold mb-6 text-sm text-red-500">
         REVIEWS
       </span>
 
@@ -73,7 +73,7 @@ const transformContent = (index: number, content: string) => {
         <div
           v-for="(review, index) in reviews"
           :key="review.id"
-          class="Review-card"
+          class="Review-card h-fit p-6 rounded-lg"
         >
           <div class="flex mb-6">
             <div
@@ -93,10 +93,10 @@ const transformContent = (index: number, content: string) => {
 
             <div
               v-if="review.author_details.rating !== null"
-              class="Review-rating flex font-semibold items-start text-2xl"
+              class="Review-rating flex font-semibold items-start rounded-lg text-2xl"
             >
               <nuxt-icon
-                class="Review-icon"
+                class="Review-icon flex h-4 w-4"
                 name="star"
               />
 
@@ -107,13 +107,15 @@ const transformContent = (index: number, content: string) => {
           </div>
 
           <p>
-            {{ transformContent(reviews.indexOf(review), review.content) }}
+            {{ transformContent(index, review.content) }}
 
             <button
               class="text-red-500 italic underline cursor-pointer"
               @click="readMoreContent(index)"
             >
-              {{ shouldFullContents[index] ? "read the less." : "read the more." }}
+              {{
+                shouldFullContents[index] ? "read the less." : "read the more."
+              }}
             </button>
           </p>
         </div>
@@ -123,15 +125,7 @@ const transformContent = (index: number, content: string) => {
 </template>
 
 <style scoped>
-.Review {
-  @apply flex justify-center;
-
-  background-color: #ffffff;
-}
-
 .Review-layout {
-  @apply flex flex-col;
-
   max-width: 1280px;
   padding: 56px 16px;
   width: 100%;
@@ -139,29 +133,18 @@ const transformContent = (index: number, content: string) => {
 
 .Review-card {
   background-color: #f9f9f9;
-  border-radius: 8px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
-  height: fit-content;
-  padding: 24px;
 }
 
 .Review-rating {
   background-color: rgba(196, 196, 196, 0.28);
-  border-radius: 8px;
   padding: 4px 16px 4px 6px;
 }
 
-.Review-icon {
-  @apply flex h-full w-full;
-
-  height: 16px;
-  width: 16px;
-}
-
-.Review-icon :deep(svg) {
-  @apply h-full w-full;
-
+.nuxt-icon :deep(svg) {
   color: #ffb802;
+  height: 100%;
   margin-bottom: 0;
+  width: 100%;
 }
 </style>

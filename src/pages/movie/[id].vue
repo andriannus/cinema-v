@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { computed, useMyFetch, useRequestURL, useRoute, useSeoMeta, useState } from "#imports";
+import {
+  computed,
+  useMyFetch,
+  useRequestURL,
+  useRoute,
+  useSeoMeta,
+  useState,
+} from "#imports";
 
 import { TMDB_IMAGE_BASE_URL } from "~/constants/movie";
 import type { MovieDetail } from "~/types/movie";
@@ -42,7 +49,7 @@ const genres = computed(() => {
     }"
   />
 
-  <div class="Detail">
+  <div class="flex justify-center p-6">
     <div class="Detail-layout flex text-white">
       <div class="Detail-poster mr-8">
         <img
@@ -95,20 +102,12 @@ const genres = computed(() => {
   height: 810px;
 }
 
-.Detail {
-  @apply flex justify-center;
-
-  padding: 24px;
-}
-
 .Detail-poster {
   height: 450px;
   background-color: #ffffff;
 }
 
 .Detail-layout {
-  @apply flex;
-
   max-width: 1280px;
   width: 100%;
 }

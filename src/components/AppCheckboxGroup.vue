@@ -63,12 +63,12 @@ const checkedOptions = useState("checkedOptions", () => []);
 
 .Checkbox-mark:after {
   content: "✓";
-  position: absolute;
   display: none;
-  width: 16px;
   height: 16px;
-  top: -4px;
+  position: absolute;
   right: -4px;
+  top: -4px;
+  width: 16px;
 }
 
 .Checkbox input:checked ~ .Checkbox-mark {

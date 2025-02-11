@@ -28,9 +28,9 @@ useSeoMeta({
 <template>
   <AppHeader />
 
-  <main class="Main">
+  <main class="Main flex justify-center">
     <div class="Main-layout grid grid-cols-4 gap-8">
-      <div class="Heading col-span-4">
+      <div class="Heading col-span-4 flex items-center justify-between">
         <h1 class="font-semibold text-2xl">
           Discover Movies
         </h1>
@@ -39,7 +39,8 @@ useSeoMeta({
           <span class="mr-3">My Movies</span>
 
           <div class="Chip">
-            <span class="font-semibold">2</span> movies
+            <span class="font-semibold">2</span>
+            <span>movies</span>
           </div>
         </div>
       </div>
@@ -69,7 +70,6 @@ useSeoMeta({
 
 <style scoped>
 .Main {
-  @apply flex justify-center;
   min-height: calc(100vh - 66px - 160px);
   padding-top: 66px;
 }
@@ -81,8 +81,6 @@ useSeoMeta({
 }
 
 .Heading {
-  @apply flex items-center justify-between;
-
   color: #e5e5e5;
   padding-top: 104px;
   padding-bottom: 52px;
