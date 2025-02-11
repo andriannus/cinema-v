@@ -35,7 +35,8 @@ const movies = computed(() => {
 </script>
 
 <template>
-  <template v-if="pending || movies.length < 1" />
+  <template v-if="movies.length < 1" />
+  <LoaderMovie v-else-if="pending" />
 
   <div
     v-else

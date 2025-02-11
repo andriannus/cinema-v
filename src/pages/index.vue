@@ -30,7 +30,9 @@ useSeoMeta({
 
   <main class="Main flex justify-center">
     <div class="Main-layout grid grid-cols-1 md:grid-cols-4 gap-8">
-      <div class="Heading col-span-4 flex items-center justify-between pt-4 md:pt-24 pb-4 md:pb-12">
+      <div
+        class="Heading col-span-4 flex items-center justify-between pt-4 md:pt-24 pb-4 md:pb-12"
+      >
         <h1 class="font-semibold text-2xl">
           Discover Movies
         </h1>
@@ -60,7 +62,12 @@ useSeoMeta({
           </div>
         </div>
 
-        <div class="flex justify-center pt-16 pb-16">
+        <LoaderMovie v-if="discoverStore.loading" />
+
+        <div
+          v-if="!discoverStore.loading && discoverStore.shouldShowLoadMore"
+          class="flex justify-center pt-16 pb-16"
+        >
           <AppButton @click="discoverStore.loadMore">
             Load More
           </AppButton>
