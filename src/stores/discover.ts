@@ -26,6 +26,7 @@ export const useDiscoverStore = defineStore("discoverStore", () => {
   const loading = useState("loading", () => false);
 
   const withGenres = computed(() => genres.value.join(","));
+  const shouldShowLoadMore = computed(() => page.value < data.value.total_pages);
 
   const fetchDiscover = async () => {
     return await ofetch<DiscoverResponse>("/discover/movie", {
@@ -108,12 +109,14 @@ export const useDiscoverStore = defineStore("discoverStore", () => {
   return {
     data,
     fetchDiscover,
+    filterByGenres,
     genres,
     initialize,
     loadMore,
+    loading,
     movies,
     page,
-    filterByGenres,
+    shouldShowLoadMore,
     sortBy,
     sortResultsBy,
   };
